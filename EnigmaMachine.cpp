@@ -66,11 +66,13 @@ int main(){
     int III=0;
     cout << "Enter text: ";
     getline(cin, rawInput);
-    cout << endl << "Enter Rotor 1 setting: "; cin >> I;
+    cout << endl << "Rotor setting should be a number [1-26]\n";
+    cout << "Enter Rotor 1 setting: "; cin >> I;
     cout << "Enter Rotor 2 setting: "; cin >> II;
     cout << "Enter Rotor 3 setting: "; cin >> III;
     while ((I-1)>25 || (II-1)>25 || (III-1)>25){
-        cout << endl << "Invalid Rotor setting!\n Try again!!!\n";
+        cout << endl << "Invalid Rotor setting!\nTry again!!!\n";
+        cout << "Rotor setting should be a number [1-26]\n";
         cout << "Enter Rotor 1 setting: "; cin >> I;
         cout << "Enter Rotor 2 setting: "; cin >> II;
         cout << "Enter Rotor 3 setting: "; cin >> III;
