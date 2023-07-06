@@ -54,7 +54,6 @@ char Encrypt(char CharIn){
     code = Backward(code, Rotor2, M2);
     code = Backward(code, Rotor3, M3);
     //code = Backward(code, Entry, M);
-    if(code == 26) return ' ';
     return Entry[code];
 }
 
