@@ -4,15 +4,15 @@
 using namespace std;
 
 
-string M = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'1234567890";
-string M1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'1234567890";
-string M2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'1234567890";
-string M3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'1234567890";
-string Rotor1 = "LPGSZMHAEOQKVXRFYBUTNICJDW ,.\"'1234567890";
-string Rotor2 = "SLVGBTFXJQOHEWIRZYAMKPCNDU ,.\"'1234567890";
-string Rotor3 = "CJGDPSHKTURAWZXFMYNQOBVLIE ,.\"'1234567890";
-string Reflector = "IMETCGFRAYSQBZXWLHKDVUPOJN ,.\"'1234567890";
-string Entry = "QWERTZUIOASDFGHJKPYXCVBNML ,.\"'1234567890";
+string M = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'-!1234567890";
+string M1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'-!1234567890";
+string M2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'-!1234567890";
+string M3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ,.\"'-!1234567890";
+string Rotor1 = "LPGSZMHAEOQKVXRFYBUTNICJDW ,.\"'-!1234567890";
+string Rotor2 = "SLVGBTFXJQOHEWIRZYAMKPCNDU ,.\"'-!1234567890";
+string Rotor3 = "CJGDPSHKTURAWZXFMYNQOBVLIE ,.\"'-!1234567890";
+string Reflector = "IMETCGFRAYSQBZXWLHKDVUPOJN ,.\"'-!1234567890";
+string Entry = "QWERTZUIOASDFGHJKPYXCVBNML ,.\"'-!1234567890";
 
 void Gearshift(string &Rotor){ //Đã hoạt động ổn định
     char temp = Rotor[0];
@@ -58,6 +58,15 @@ char Encrypt(char CharIn){
 }
 
 int main(){
+    bool run = true;
+    #ifdef _WIN32 
+    system("cls"); 
+    #endif
+    #ifdef _WIN64 
+        system("cls");
+    #else
+        system("clear");
+    #endif
     string rawInput;
     string Input;
     int I=0;
@@ -69,6 +78,7 @@ int main(){
     cout << "Enter Rotor 1 setting: "; cin >> I;
     cout << "Enter Rotor 2 setting: "; cin >> II;
     cout << "Enter Rotor 3 setting: "; cin >> III;
+    //Check for invalid rotor setting
     while ((I-1)>25 || (II-1)>25 || (III-1)>25){
         cout << endl << "Invalid Rotor setting!\nTry again!!!\n";
         cout << "Rotor setting should be a number [1-26]\n";
@@ -76,6 +86,7 @@ int main(){
         cout << "Enter Rotor 2 setting: "; cin >> II;
         cout << "Enter Rotor 3 setting: "; cin >> III;
     }
+    //Rotate Rotor to specific location
     for (int i=0; i<I-1; i++){
         Gearshift(Rotor1);
         Gearshift(M1);
@@ -88,10 +99,12 @@ int main(){
         Gearshift(Rotor3);
         Gearshift(M3);
     }
+    //Turn all letter to uppercase
     Input = rawInput;
     for(int i=0; i<rawInput.size(); i++){
         Input[i] = toupper(rawInput[i]);
     }
+    //input msg and output cipher
     cout << endl << "Code: ";
     for (int i=0; i<Input.size(); i++){
         cout << Encrypt(Input[i]);
@@ -106,4 +119,7 @@ int main(){
             }
         }
     }
+    cout << endl;
+    string checkrun;
+    system("Pause");
 }
